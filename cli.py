@@ -5,11 +5,14 @@ from importlib import import_module
 
 
 def run(fn, input_filename):
-    with open(input_filename) as f:
-        try:
-            return fn(f)
-        except:
-            traceback.print_exc()
+    try:
+        with open(input_filename) as f:
+            try:
+                return fn(f)
+            except:
+                traceback.print_exc()
+    except FileNotFoundError:
+        return f"File is missing {input_filename}"
 
 
 if __name__ == "__main__":
