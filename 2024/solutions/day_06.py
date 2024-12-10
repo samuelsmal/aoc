@@ -1,5 +1,6 @@
 # taking the idea from others to use complex numbers to store position and direction!
 # blew my mind when I saw it, so I had to redo it again...
+import io
 
 
 def walk(grid, start, part=1):
@@ -19,7 +20,7 @@ def walk(grid, start, part=1):
         return {pos for pos, _ in seen}
 
 
-def part_1(input_file):
+def part_1(input_file: io.TextIOWrapper) -> int:
     grid = {
         i + j * 1j: c for i, r in enumerate(input_file) for j, c in enumerate(r.strip())
     }
@@ -29,7 +30,7 @@ def part_1(input_file):
     return len(path)
 
 
-def part_2(input_file):
+def part_2(input_file: io.TextIOWrapper) -> int:
     grid = {
         i + j * 1j: c for i, r in enumerate(input_file) for j, c in enumerate(r.strip())
     }
