@@ -1,5 +1,6 @@
 import argparse
 import traceback
+import time
 from datetime import datetime
 from importlib import import_module
 
@@ -40,9 +41,15 @@ if __name__ == "__main__":
             continue
 
         print(f"#--- {part} ---#")
-        print(
-            f"Sample:\t{run(getattr(module, part), f'./{args.year}/input/day_{args.day:02}_sample.txt')}"
+        start = time.perf_counter()
+        solution = run(
+            getattr(module, part), f"./{args.year}/input/day_{args.day:02}_sample.txt"
         )
-        print(
-            f"Input:\t{run(getattr(module, part), f'./{args.year}/input/day_{args.day:02}.txt')}"
+        end = time.perf_counter()
+        print(f"Sample:\t{solution}\tTook {end - start:0.2f} seconds.")
+        start = time.perf_counter()
+        solution = run(
+            getattr(module, part), f"./{args.year}/input/day_{args.day:02}.txt"
         )
+        end = time.perf_counter()
+        print(f"Sample:\t{solution}\tTook {end - start:0.2f} seconds.")
