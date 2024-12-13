@@ -41,15 +41,15 @@ if __name__ == "__main__":
             continue
 
         print(f"#--- {part} ---#")
-        start = time.perf_counter()
+        start = time.perf_counter_ns()
         solution = run(
             getattr(module, part), f"./{args.year}/input/day_{args.day:02}_sample.txt"
         )
-        end = time.perf_counter()
-        print(f"Sample:\t{solution}\tTook {end - start:0.2f} seconds.")
-        start = time.perf_counter()
+        end = time.perf_counter_ns()
+        print(f"Sample:\t{solution}\tSolved in {(end - start)/10**9:0.3f} seconds.")
+        start = time.perf_counter_ns()
         solution = run(
             getattr(module, part), f"./{args.year}/input/day_{args.day:02}.txt"
         )
-        end = time.perf_counter()
-        print(f"Sample:\t{solution}\tTook {end - start:0.2f} seconds.")
+        end = time.perf_counter_ns()
+        print(f"  Real:\t{solution}\tSolved in {(end - start)/10**9:0.3f} seconds.")
